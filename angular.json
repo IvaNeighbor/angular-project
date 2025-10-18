@@ -20,6 +20,7 @@
             "stylePreprocessorOptions": {
             "includePaths": ["src/scss"]
             },
+            "outputPath": "dist/angular-project",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -95,6 +96,9 @@
               "src/styles.scss"
             ]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

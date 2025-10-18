@@ -1,0 +1,57 @@
+.footer {
+  background-color: var(--color-brand-dark);
+  padding: 140px 0;
+
+  &__container {
+    display: flex;
+    gap: 114px;
+  }
+
+  &__titles {
+    color: var(--color-primary-light);
+    font-style: normal;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  &__nav {
+    display: flex;
+    gap: 114px;
+  }
+
+  &__logo {
+    margin-bottom: 16px;
+  }
+
+  &__text {
+    color: var(--color-primary-light);
+    font-size: 14px;
+  }
+
+  &__address {
+    display: flex;
+    gap: 114px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__social-icon {
+    fill: var(--color-primary-light);
+    margin-right: 24px;
+    transition: fill 0.2s ease, transform 0.3s ease;
+
+    &:hover {
+      fill: var(--color-rare-light);
+      transform: scale(1.2);
+    }
+
+    &--lastWithout {
+      margin-right: 0;
+    }
+  }
+}

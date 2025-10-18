@@ -1,0 +1,27 @@
+<header class="header">
+  <div class="container">
+    <div class="header__container">
+      <nav class="header__nav">
+        <a href="#"><img src="/assets/images/Logo.svg" alt="Travel Logo" /></a>
+        <app-top-menu></app-top-menu>
+      </nav>
+      <div class="header__search-log">
+        <form class="header__form" autocomplete="off">
+          <label class="header__label visually-hidden" for="search-field">Search</label>
+
+          <input
+            class="header__control"
+            type="search"
+            id="search-field"
+            name="search-field"
+            placeholder="Search"
+          />
+
+          <button class="header__button-submit" type="submit">Search</button>
+        </form>
+
+        <app-auth-menu></app-auth-menu>
+      </div>
+    </div>
+  </div>
+</header>

@@ -17,6 +17,9 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "stylePreprocessorOptions": {
+            "includePaths": ["src/scss"]
+            },
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -27,7 +30,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"
@@ -94,5 +98,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "c9d319ca-4c29-489c-b5b5-172f9744b696"
   }
 }

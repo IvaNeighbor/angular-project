@@ -17,6 +17,10 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "stylePreprocessorOptions": {
+            "includePaths": ["src/scss"]
+            },
+            "outputPath": "dist/angular-project",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -27,7 +31,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"
@@ -91,8 +96,14 @@
               "src/styles.scss"
             ]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "c9d319ca-4c29-489c-b5b5-172f9744b696"
   }
 }

@@ -1,0 +1,33 @@
+<form class="booking-form">
+  <div class="booking-form__fields">
+    <div class="booking-form__field">
+      <label class="booking-form__label" for="destination">destination</label>
+      <input class="booking-form__input" type="text" id="destination" name="destination" />
+    </div>
+
+    <div class="booking-form__field">
+      <label class="booking-form__label" for="person-count">person</label>
+      <select class="booking-form__input" name="person-count" id="person-count">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+      </select>
+    </div>
+
+    <div class="booking-form__field">
+      <label class="booking-form__label" for="check-in">check in</label>
+      <input class="booking-form__input" type="date" name="check-in" id="check-in" />
+    </div>
+
+    <div class="booking-form__field">
+      <label class="booking-form__label" for="check-out">check out</label>
+      <input class="booking-form__input" type="date" name="check-out" id="check-out" />
+    </div>
+  </div>
+  <button class="booking-form__button" type="submit">book now &rarr;</button>
+</form>

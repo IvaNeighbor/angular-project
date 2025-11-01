@@ -1,0 +1,5 @@
+<div class="offer-cards">
+  <div *ngFor="let item of offers; trackBy: trackById">
+    <app-offer-card [offer]="item"></app-offer-card>
+  </div>
+</div>

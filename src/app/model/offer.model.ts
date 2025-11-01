@@ -3,8 +3,7 @@ export interface offer {
     country: string,
     description: string,
     price: number,
-    discount: number,
+    discount?: number,
     bgImage: string,
-    isAvaible: boolean,
     freeSeats: number
   }

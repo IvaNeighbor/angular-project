@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import {offer} from '../../../model/offer.model'
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-offer-card',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './offer-card.html',
   styleUrl: './offer-card.scss'
 })
@@ -12,8 +13,13 @@ export class OfferCard {
 
   @Input() offer!: offer;
   
-    getDiscountPrice() {
-    return this.offer.price - this.offer.price * this.offer.discount / 100;
+  getDiscountPrice() {
+    if (this.offer.discount) {
+       return this.offer.price - this.offer.price * this.offer.discount / 100; 
+    }
+    else {
+      return this.offer.price;
+    }
   }
 
   increment() {

@@ -17,10 +17,8 @@ offers: offer[] = [
     country: 'Lisbon, Portugal',
     description: '5 nights and 4 days in a 5-star hotel with ocean view, breakfast and lunch included.',
     price: 500,
-    discount: 9.9,
     bgImage: 'assets/images/offer-card-Portugal.jpg',
-    isAvaible: true,
-    freeSeats: 9
+    freeSeats: 0
   },
   {
     id: 2,
@@ -29,7 +27,6 @@ offers: offer[] = [
     price: 800,
     discount: 2.7,
     bgImage: 'assets/images/offer-card-Greece.jpg',
-    isAvaible: true,
     freeSeats: 5
   },
   {
@@ -39,7 +36,6 @@ offers: offer[] = [
     price: 750,
     discount: 5.7,
     bgImage: 'assets/images/offer-card-Italy.jpg',
-    isAvaible: true,
     freeSeats: 3
   },
   {
@@ -49,7 +45,6 @@ offers: offer[] = [
     price: 950,
     discount: 10,
     bgImage: 'assets/images/offer-card-Pore.jpg',
-    isAvaible: true,
     freeSeats: 6
   },
   {
@@ -59,7 +54,6 @@ offers: offer[] = [
     price: 670,
     discount: 6.5,
     bgImage: 'assets/images/offer-card-Spain.jpg',
-    isAvaible: true,
     freeSeats: 8
   },
   {
@@ -69,7 +63,6 @@ offers: offer[] = [
     price: 400,
     discount: 4.3,
     bgImage: 'assets/images/offer-card-Czech.jpg',
-    isAvaible: true,
     freeSeats: 10
   },
   {
@@ -79,7 +72,6 @@ offers: offer[] = [
     price: 720,
     discount: 5.1,
     bgImage: 'assets/images/offer-card-Austria.jpg',
-    isAvaible: true,
     freeSeats: 4
   },
   {
@@ -89,7 +81,6 @@ offers: offer[] = [
     price: 1100,
     discount: 7.8,
     bgImage: 'assets/images/offer-card-Switzerland.jpg',
-    isAvaible: false,
     freeSeats: 0
   },
   {
@@ -99,7 +90,6 @@ offers: offer[] = [
     price: 560,
     discount: 3.4,
     bgImage: 'assets/images/offer-card-Hungary.jpg',
-    isAvaible: true,
     freeSeats: 7
   },
   {
@@ -109,7 +99,6 @@ offers: offer[] = [
     price: 820,
     discount: 4.9,
     bgImage: 'assets/images/offer-card-Netherlands.jpg',
-    isAvaible: true,
     freeSeats: 2
   },
   {
@@ -119,7 +108,6 @@ offers: offer[] = [
     price: 980,
     discount: 8.5,
     bgImage: 'assets/images/offer-card-Norway.jpg',
-    isAvaible: true,
     freeSeats: 5
   },
   {
@@ -129,7 +117,6 @@ offers: offer[] = [
     price: 640,
     discount: 6.0,
     bgImage: 'assets/images/offer-card-Croatia.jpg',
-    isAvaible: true,
     freeSeats: 9
   }
 ];

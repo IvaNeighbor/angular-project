@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrl: './trip-cards.scss'
 })
 export class TripCards {
-
 }

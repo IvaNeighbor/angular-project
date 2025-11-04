@@ -1,0 +1,12 @@
+<img [src]="offer.bgImage" class="offer-cards__img" alt="{{ offer.country }}" />
+<h3>{{ offer.country }}</h3>
+<p>{{ offer.description }}</p>
+<p>Discount price: {{ '$' + getDiscountPrice().toFixed(2) }}</p>
+<p>Avaible: {{ offer.isAvaible ? 'Yes' : 'No' }}</p>
+<p>Free sats: {{ offer.freeSeats > 0 ? offer.freeSeats + ' free seats left' : 'None' }}</p>
+<button type="button" class="offer-cards__book-button" [disabled]="!offer.freeSeats">Book</button>
+<div>
+  <button type="button" class="offer-cards__decrement-button" (click)="decrement()">-</button>
+  <p>{{ numberOfReserves }}</p>
+  <button type="button" class="offer-cards__increment-button" (click)="increment()">+</button>
+</div>

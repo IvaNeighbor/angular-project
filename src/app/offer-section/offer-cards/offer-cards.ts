@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {offer} from '../../model/offer.model'
 import { OfferCard } from "./offer-card/offer-card";
@@ -18,7 +18,8 @@ offers: offer[] = [
     description: '5 nights and 4 days in a 5-star hotel with ocean view, breakfast and lunch included.',
     price: 500,
     bgImage: 'assets/images/offer-card-Portugal.jpg',
-    freeSeats: 0
+    freeSeats: 0,
+    rating: 3
   },
   {
     id: 2,
@@ -27,7 +28,8 @@ offers: offer[] = [
     price: 800,
     discount: 2.7,
     bgImage: 'assets/images/offer-card-Greece.jpg',
-    freeSeats: 5
+    freeSeats: 5,
+    rating: 5
   },
   {
     id: 3,
@@ -36,7 +38,8 @@ offers: offer[] = [
     price: 750,
     discount: 5.7,
     bgImage: 'assets/images/offer-card-Italy.jpg',
-    freeSeats: 3
+    freeSeats: 3,
+    rating: 4
   },
   {
     id: 4,
@@ -44,8 +47,9 @@ offers: offer[] = [
     description: 'Romantic weekend for two in a luxury Paris hotel. Breakfast and wine tasting included.',
     price: 950,
     discount: 10,
-    bgImage: 'assets/images/offer-card-Pore.jpg',
-    freeSeats: 6
+    bgImage: 'assets/images/offer-card-France.jpg',
+    freeSeats: 6,
+    rating: 5
   },
   {
     id: 5,
@@ -54,7 +58,8 @@ offers: offer[] = [
     price: 670,
     discount: 6.5,
     bgImage: 'assets/images/offer-card-Spain.jpg',
-    freeSeats: 8
+    freeSeats: 8,
+    rating: 5
   },
   {
     id: 6,
@@ -63,7 +68,8 @@ offers: offer[] = [
     price: 400,
     discount: 4.3,
     bgImage: 'assets/images/offer-card-Czech.jpg',
-    freeSeats: 10
+    freeSeats: 10,
+    rating: 5
   },
   {
     id: 7,
@@ -72,16 +78,18 @@ offers: offer[] = [
     price: 720,
     discount: 5.1,
     bgImage: 'assets/images/offer-card-Austria.jpg',
-    freeSeats: 4
+    freeSeats: 4,
+    rating: 5
   },
   {
     id: 8,
     country: 'Zurich, Switzerland',
     description: 'Luxury 5-day stay with mountain excursions and spa access.',
-    price: 1100,
+    price: 966,
     discount: 7.8,
     bgImage: 'assets/images/offer-card-Switzerland.jpg',
-    freeSeats: 0
+    freeSeats: 0,
+    rating: 5
   },
   {
     id: 9,
@@ -90,7 +98,8 @@ offers: offer[] = [
     price: 560,
     discount: 3.4,
     bgImage: 'assets/images/offer-card-Hungary.jpg',
-    freeSeats: 7
+    freeSeats: 7,
+    rating: 5
   },
   {
     id: 10,
@@ -99,7 +108,8 @@ offers: offer[] = [
     price: 820,
     discount: 4.9,
     bgImage: 'assets/images/offer-card-Netherlands.jpg',
-    freeSeats: 2
+    freeSeats: 2,
+    rating: 5
   },
   {
     id: 11,
@@ -108,7 +118,8 @@ offers: offer[] = [
     price: 980,
     discount: 8.5,
     bgImage: 'assets/images/offer-card-Norway.jpg',
-    freeSeats: 5
+    freeSeats: 5,
+    rating: 5
   },
   {
     id: 12,
@@ -117,10 +128,27 @@ offers: offer[] = [
     price: 640,
     discount: 6.0,
     bgImage: 'assets/images/offer-card-Croatia.jpg',
-    freeSeats: 9
+    freeSeats: 9,
+    rating: 5
   }
 ];
 
+  @Output() selectedOfferEvent: EventEmitter<offer> = new EventEmitter<offer>();
+  selectedOffer!: offer; 
+
+  onSelectedOffer(offer: offer) {
+    this.selectedOffer = offer;
+    this.selectedOfferEvent.emit(this.selectedOffer);
+  } 
+
+  @Input() searchText: string = "";
+
+  get filteredAndSearchedTravel() {
+    if (!this.searchText) {
+      return this.offers;
+    }
+    return this.offers.filter(offer=>offer.country.toLowerCase().includes(this.searchText.toLowerCase()));
+  }
 
   trackById(id: number, item: offer): number {
     return item.id;

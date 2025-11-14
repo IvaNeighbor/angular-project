@@ -10,5 +10,4 @@ import { AuthMenu } from "./auth-menu/auth-menu";
   styleUrl: './header.scss'
 })
 export class Header {
-  searchText: string = 'Lisbon, Portugal';
 }

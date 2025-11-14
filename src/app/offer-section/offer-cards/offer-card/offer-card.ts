@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {offer} from '../../../model/offer.model'
+import { offer } from '../../../model/offer.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,7 +10,8 @@ import { CommonModule } from '@angular/common';
 })
 export class OfferCard {
   numberOfReserves: number = 0;
-
+  stars = Array.from({ length: 5 });
+  
   @Input() offer!: offer;
   
   getDiscountPrice() {
@@ -22,15 +23,21 @@ export class OfferCard {
     }
   }
 
-  increment() {
-    if (this.offer.freeSeats > this.numberOfReserves) {
-      this.numberOfReserves++;
-    }
+  openTravelDetailModal() {
+    const modalElement = document.getElementById('travelDetailModal');
+    const modalInstance = new (window as any).bootstrap.Modal(modalElement);
+    modalInstance.show();
   }
 
-  decrement() {
-    if (this.numberOfReserves > 0) {
-      this.numberOfReserves--;
-    }
-  }
+  // increment() {
+  //   if (this.offer.freeSeats > this.numberOfReserves) {
+  //     this.numberOfReserves++;
+  //   }
+  // }
+
+  // decrement() {
+  //   if (this.numberOfReserves > 0) {
+  //     this.numberOfReserves--;
+  //   }
+  // }
 }

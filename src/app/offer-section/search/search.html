@@ -1,0 +1,14 @@
+<form class="search__form" autocomplete="off">
+  <label class="search__label visually-hidden" for="search-field">Search</label>
+
+  <input
+    class="search__control"
+    type="search"
+    id="search-field"
+    name="search-field"
+    placeholder="Search"
+    #searchInput
+  />
+
+  <button class="search__button-submit" type="submit" (click)="setSearchText()">Search</button>
+</form>

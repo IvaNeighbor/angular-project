@@ -1,36 +1,61 @@
-<div class="offer-card">
-  <img [src]="offer.bgImage" class="offer-cards__img" alt="{{ offer.country }}" />
-  <h3>{{ offer.country }}</h3>
-  <p>{{ offer.description }}</p>
-  <p>
-    Price:
-    <span
+<div class="offer-card" (click)="openTravelDetailModal()">
+  <img class="offer-card__img" [src]="offer.bgImage" alt="{{ offer.country }}" />
+
+  <div class="offer-card__container">
+    <p *ngIf="offer.discount" class="offer-card__discount">{{ offer.discount }}% Off</p>
+    <h3 class="offer-card__title">{{ offer.country }}</h3>
+
+    <div class="offer-card__rating">
+      <ng-container *ngFor="let _ of stars; let i = index">
+        <svg
+          class="offer-card__star"
+          [class.offer-card__star--filled]="i < offer.rating"
+          width="24px"
+          height="24px"
+        >
+          <use href="../../../../assets/images/icons.svg#icon-star"></use>
+        </svg>
+      </ng-container>
+    </div>
+
+    <p class="offer-card__description">{{ offer.description }}</p>
+
+    <p
       [ngClass]="{
-        'offer-card__price': !offer.discount,
-        'offer-card__price--discount': offer.discount
+        'offer-card__avaible': offer.freeSeats,
+        'offer-card__avaible--not': !offer.freeSeats
       }"
-      >{{ '$' + offer.price }}
-    </span>
-    <span *ngIf="offer.discount" class="offer-card__slash">/</span>
-    <span *ngIf="offer.discount" class="offer-card__discount-price">{{
-      getDiscountPrice().toFixed(2)
-    }}</span>
-  </p>
-  <p *ngIf="offer.discount" class="offer-card__discount">{{ offer.discount }}% Off</p>
-  <p
-    [ngClass]="{
-      'offer-card__avaible': offer.freeSeats,
-      'offer-card__avaible--not': !offer.freeSeats
-    }"
-  >
-    Avaible: {{ offer.freeSeats ? 'Yes' : 'No' }}
-  </p>
-  <p>Free sats: {{ offer.freeSeats > 0 ? offer.freeSeats + ' free seats left' : 'None' }}</p>
-  <button type="button" class="offer-cards__book-button" [disabled]="!offer.freeSeats">Book</button>
-  <div>
-    <button type="button" class="offer-cards__decrement-button" (click)="decrement()">-</button>
-    <p>{{ numberOfReserves }}</p>
-    <button type="button" class="offer-cards__increment-button" (click)="increment()">+</button>
+    >
+      Avaible: {{ offer.freeSeats ? 'Yes' : 'No' }}
+    </p>
+
+    <p class="offer-card__text-price">
+      Price: $
+      <span
+        [ngClass]="{
+          'offer-card__price': !offer.discount,
+          'offer-card__price--discount': offer.discount
+        }"
+        >{{ offer.price }}
+      </span>
+      <span *ngIf="offer.discount" class="offer-card__slash">/</span>
+      <span *ngIf="offer.discount" class="offer-card__discount-price">{{
+        getDiscountPrice().toFixed(2)
+      }}</span>
+    </p>
+
+    <p>Free sats: {{ offer.freeSeats > 0 ? offer.freeSeats + ' free seats left' : 'None' }}</p>
+
+    <div class="offer-card__book-container">
+      <button class="offer-card__book-button" type="button">details</button>
+
+      <!-- <div class="offer-card__amount-passeger">
+        <button type="button" class="offer-card__decrement-button" (click)="decrement()">-</button>
+        <p class="offer-card__text-passeger">{{ numberOfReserves }}</p>
+        <button type="button" class="offer-card__increment-button" (click)="increment()">+</button>
+      </div> -->
+    </div>
+
+    <!-- <button class="offer-card__details-button" type="button">details</button> -->
   </div>
-  <button type="button">Details</button>
 </div>

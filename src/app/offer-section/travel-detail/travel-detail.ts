@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { offer } from '../../model/offer.model';
 import { CommonModule } from '@angular/common';
+import { Data } from '../../services/data';
 
 @Component({
   selector: 'app-travel-detail',
@@ -9,8 +10,18 @@ import { CommonModule } from '@angular/common';
   styleUrl: './travel-detail.scss'
 })
 export class TravelDetail {
+  constructor(private dataService: Data) { }
+  offers: offer[] = [];
+  ngOnInit(): void {
+    this.offers = this.dataService.getItems();
+  }
+
   numberOfReserves: number = 0;
   stars = Array.from({ length: 5 });
+
+ngOnChanges() {
+  console.log('travel-detail offer', this.offer);
+}
 
   @Input() offer!: offer;
   

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { offer } from '../../../model/offer.model';
 import { CommonModule } from '@angular/common';
 
@@ -13,6 +13,8 @@ export class OfferCard {
   stars = Array.from({ length: 5 });
   
   @Input() offer!: offer;
+
+  @Output() cardClickEvent = new EventEmitter<offer>();
   
   getDiscountPrice() {
     if (this.offer.discount) {
@@ -24,6 +26,8 @@ export class OfferCard {
   }
 
   openTravelDetailModal() {
+    this.cardClickEvent.emit(this.offer);
+
     const modalElement = document.getElementById('travelDetailModal');
     const modalInstance = new (window as any).bootstrap.Modal(modalElement);
     modalInstance.show();

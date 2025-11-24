@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {offer} from '../model/offer.model'
+import { offer } from '../model/offer.model';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -127,7 +128,20 @@ export class Data {
     }
   ];
 
-  getItems(): offer[] {
-    return this.offers;
+  private offersSubject = new BehaviorSubject<offer[]>(this.offers);
+
+  getItems(): Observable<offer[]> {
+    return this.offersSubject.asObservable();
+  }
+
+  filterOffers(searchText: string): void {
+    if (!searchText) {
+      this.offersSubject.next(this.offers);
+    } else {
+      const filtered = this.offers.filter(offer => 
+        offer.country.toLowerCase().includes(searchText.toLowerCase())
+      );
+      this.offersSubject.next(filtered);
+    }
   }
 }

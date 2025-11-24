@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, OnDestroy, OnChanges, SimpleChanges} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {offer} from '../../model/offer.model'
 import { OfferCard } from "./offer-card/offer-card";
 import { Data } from '../../services/data';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -11,11 +12,29 @@ import { Data } from '../../services/data';
   templateUrl: './offer-cards.html',
   styleUrl: './offer-cards.scss'
 })
-export class OfferCards {
-  constructor(private dataService: Data) { }
+export class OfferCards implements OnInit, OnDestroy, OnChanges{
   offers: offer[] = [];
+  private subscription: Subscription = new Subscription();
+  constructor(private dataService: Data) { }
+
   ngOnInit(): void {
-    this.offers = this.dataService.getItems();
+    this.subscription = this.dataService.getItems().subscribe(data => {
+      this.offers = data;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  @Input() searchText: string = "";
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['searchText']) {
+      this.dataService.filterOffers(this.searchText);
+    }
   }
 
   @Output() selectedOfferEvent: EventEmitter<offer> = new EventEmitter<offer>();
@@ -25,15 +44,6 @@ export class OfferCards {
     this.selectedOffer = offer;
     this.selectedOfferEvent.emit(this.selectedOffer);
   } 
-
-  @Input() searchText: string = "";
-
-  get filteredAndSearchedTravel() {
-    if (!this.searchText) {
-      return this.offers;
-    }
-    return this.offers.filter(offer=>offer.country.toLowerCase().includes(this.searchText.toLowerCase()));
-  }
 
   trackById(id: number, item: offer): number {
     return item.id;

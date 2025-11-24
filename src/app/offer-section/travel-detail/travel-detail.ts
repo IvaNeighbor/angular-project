@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { offer } from '../../model/offer.model';
 import { CommonModule } from '@angular/common';
 import { Data } from '../../services/data';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-travel-detail',
@@ -9,11 +10,21 @@ import { Data } from '../../services/data';
   templateUrl: './travel-detail.html',
   styleUrl: './travel-detail.scss'
 })
-export class TravelDetail {
-  constructor(private dataService: Data) { }
+export class TravelDetail implements OnInit, OnDestroy {
   offers: offer[] = [];
+  private sub: Subscription = new Subscription();
+  constructor(private dataService: Data) { }
+
   ngOnInit(): void {
-    this.offers = this.dataService.getItems();
+    this.sub = this.dataService.getItems().subscribe(data => {
+      this.offers = data;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
   numberOfReserves: number = 0;

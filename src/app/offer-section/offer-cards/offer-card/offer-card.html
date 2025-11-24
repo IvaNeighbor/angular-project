@@ -1,4 +1,4 @@
-<div class="offer-card" (click)="openTravelDetailModal()">
+<div class="offer-card">
   <img class="offer-card__img" [src]="offer.bgImage" alt="{{ offer.country }}" />
 
   <div class="offer-card__container">
@@ -47,7 +47,7 @@
     <p>Free sats: {{ offer.freeSeats > 0 ? offer.freeSeats + ' free seats left' : 'None' }}</p>
 
     <div class="offer-card__book-container">
-      <button class="offer-card__book-button" type="button">details</button>
+      <a class="offer-card__book-button" [routerLink]="['/offer', offer.id]"> details </a>
 
       <!-- <div class="offer-card__amount-passeger">
         <button type="button" class="offer-card__decrement-button" (click)="decrement()">-</button>

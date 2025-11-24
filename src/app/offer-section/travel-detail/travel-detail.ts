@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { offer } from '../../model/offer.model';
 import { CommonModule } from '@angular/common';
 import { Data } from '../../services/data';
@@ -6,19 +7,28 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-travel-detail',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './travel-detail.html',
   styleUrl: './travel-detail.scss'
 })
 export class TravelDetail implements OnInit, OnDestroy {
-  offers: offer[] = [];
+  offer: offer | undefined;
+  stars = Array.from({ length: 5 });
+  numberOfReserves: number = 0;
+
+  constructor(
+    private dataService: Data,
+    private route: ActivatedRoute 
+  ) { }
+
   private sub: Subscription = new Subscription();
-  constructor(private dataService: Data) { }
 
   ngOnInit(): void {
-    this.sub = this.dataService.getItems().subscribe(data => {
-      this.offers = data;
-    });
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    if (id) {
+      this.offer = this.dataService.getOfferById(id);
+    }
   }
 
   ngOnDestroy(): void {
@@ -26,27 +36,16 @@ export class TravelDetail implements OnInit, OnDestroy {
       this.sub.unsubscribe();
     }
   }
-
-  numberOfReserves: number = 0;
-  stars = Array.from({ length: 5 });
-
-ngOnChanges() {
-  console.log('travel-detail offer', this.offer);
-}
-
-  @Input() offer!: offer;
   
-    getDiscountPrice() {
-    if (this.offer.discount) {
+  getDiscountPrice() {
+    if (this.offer && this.offer.discount) {
        return this.offer.price - this.offer.price * this.offer.discount / 100; 
     }
-    else {
-      return this.offer.price;
-    }
+    return this.offer ? this.offer.price : 0;
   }
 
   increment() {
-    if (this.offer.freeSeats > this.numberOfReserves) {
+    if (this.offer && this.offer.freeSeats > this.numberOfReserves) {
       this.numberOfReserves++;
     }
   }

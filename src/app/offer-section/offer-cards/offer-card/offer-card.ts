@@ -1,10 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { offer } from '../../../model/offer.model';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-offer-card',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './offer-card.html',
   styleUrl: './offer-card.scss'
 })

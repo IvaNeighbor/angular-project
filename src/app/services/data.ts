@@ -144,4 +144,8 @@ export class Data {
       this.offersSubject.next(filtered);
     }
   }
+
+  getOfferById(id: number): offer | undefined {
+    return this.offers.find(offer => offer.id === id);
+  }
 }

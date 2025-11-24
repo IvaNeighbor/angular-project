@@ -1,84 +1,74 @@
-<div class="modal fade" id="travelDetailModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="travel-detail">
-          <img class="travel-detail__img" [src]="offer.bgImage" alt="{{ offer.country }}" />
+<div class="travel-detail" *ngIf="offer">
+  <img class="travel-detail__img" [src]="offer.bgImage" alt="{{ offer.country }}" />
 
-          <div class="travel-detail__container">
-            <p *ngIf="offer.discount" class="travel-detail__discount">{{ offer.discount }}% Off</p>
-            <h3 class="travel-detail__title">{{ offer.country }}</h3>
+  <div class="travel-detail__container">
+    <p *ngIf="offer.discount" class="travel-detail__discount">{{ offer.discount }}% Off</p>
+    <h3 class="travel-detail__title">{{ offer.country }}</h3>
 
-            <div class="travel-detail__rating">
-              <ng-container *ngFor="let _ of stars; let i = index">
-                <svg
-                  class="travel-detail__star"
-                  [class.travel-detail__star--filled]="i < offer.rating"
-                  width="24px"
-                  height="24px"
-                >
-                  <use href="../../../../assets/images/icons.svg#icon-star"></use>
-                </svg>
-              </ng-container>
-            </div>
+    <div class="travel-detail__rating">
+      <ng-container *ngFor="let _ of stars; let i = index">
+        <svg
+          class="travel-detail__star"
+          [class.travel-detail__star--filled]="i < offer.rating"
+          width="24px"
+          height="24px"
+        >
+          <use href="../../../../assets/images/icons.svg#icon-star"></use>
+        </svg>
+      </ng-container>
+    </div>
 
-            <p class="travel-detail__description">{{ offer.description }}</p>
+    <p class="travel-detail__description">{{ offer.description }}</p>
 
-            <p
-              [ngClass]="{
-                'travel-detail__avaible': offer.freeSeats,
-                'travel-detail__avaible--not': !offer.freeSeats
-              }"
-            >
-              Avaible: {{ offer.freeSeats ? 'Yes' : 'No' }}
-            </p>
+    <p
+      [ngClass]="{
+        'travel-detail__avaible': offer.freeSeats,
+        'travel-detail__avaible--not': !offer.freeSeats
+      }"
+    >
+      Avaible: {{ offer.freeSeats ? 'Yes' : 'No' }}
+    </p>
 
-            <p class="travel-detail__text-price">
-              Price: $
-              <span
-                [ngClass]="{
-                  'travel-detail__price': !offer.discount,
-                  'travel-detail__price--discount': offer.discount
-                }"
-                >{{ offer.price }}
-              </span>
-              <span *ngIf="offer.discount" class="travel-detail__slash">/</span>
-              <span *ngIf="offer.discount" class="travel-detail__discount-price">{{
-                getDiscountPrice().toFixed(2)
-              }}</span>
-            </p>
+    <p class="travel-detail__text-price">
+      Price: $
+      <span
+        [ngClass]="{
+          'travel-detail__price': !offer.discount,
+          'travel-detail__price--discount': offer.discount
+        }"
+        >{{ offer.price }}
+      </span>
+      <span *ngIf="offer.discount" class="travel-detail__slash">/</span>
+      <span *ngIf="offer.discount" class="travel-detail__discount-price">{{
+        getDiscountPrice().toFixed(2)
+      }}</span>
+    </p>
 
-            <p>
-              Free sats: {{ offer.freeSeats > 0 ? offer.freeSeats + ' free seats left' : 'None' }}
-            </p>
+    <p>Free sats: {{ offer.freeSeats > 0 ? offer.freeSeats + ' free seats left' : 'None' }}</p>
 
-            <div class="travel-detail__book-container">
-              <button
-                class="travel-detail__book-button"
-                type="button"
-                *ngIf="offer.freeSeats; else notifyMe"
-              >
-                book
-              </button>
-              <ng-template #notifyMe>
-                <button class="travel-detail__book-button--notify">Notify Me</button>
-              </ng-template>
+    <div class="travel-detail__book-container">
+      <button
+        class="travel-detail__book-button"
+        type="button"
+        *ngIf="offer.freeSeats; else notifyMe"
+      >
+        book
+      </button>
+      <ng-template #notifyMe>
+        <button class="travel-detail__book-button--notify">Notify Me</button>
+      </ng-template>
 
-              <div class="travel-detail__amount-passeger">
-                <button type="button" class="travel-detail__decrement-button" (click)="decrement()">
-                  -
-                </button>
-                <p class="travel-detail__text-passeger">{{ numberOfReserves }}</p>
-                <button type="button" class="travel-detail__increment-button" (click)="increment()">
-                  +
-                </button>
-              </div>
-            </div>
-
-            <!-- <button class="travel-detail__details-button" type="button">details</button> -->
-          </div>
-        </div>
+      <div class="travel-detail__amount-passeger">
+        <button type="button" class="travel-detail__decrement-button" (click)="decrement()">
+          -
+        </button>
+        <p class="travel-detail__text-passeger">{{ numberOfReserves }}</p>
+        <button type="button" class="travel-detail__increment-button" (click)="increment()">
+          +
+        </button>
       </div>
     </div>
+
+    <!-- <button class="travel-detail__details-button" type="button">details</button> -->
   </div>
 </div>

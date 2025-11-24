@@ -5,10 +5,6 @@
       <h2 class="offer-section__title section__title">special offer</h2>
       <p class="offer-section__subtitle-text">Check out our special offer and discounts</p>
     </div>
-    <app-offer-cards
-      [searchText]="searchText"
-      (selectedOfferEvent)="setSelectedOffer($event)"
-    ></app-offer-cards>
-    <app-travel-detail [offer]="selectedOffer"></app-travel-detail>
+    <app-offer-cards [searchText]="searchText"></app-offer-cards>
   </div>
 </section>

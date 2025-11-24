@@ -6,12 +6,12 @@
   &__container {
     display: flex;
     align-items: center;
-    gap: 128px;
+    gap: 250px;
   }
 
   &__nav {
     display: flex;
-    gap: 128px;
+    gap: 250px;
     flex-grow: 1;
   }
 
@@ -21,50 +21,50 @@
     gap: 20px;
   }
 
-  &__form {
-    display: flex;
-    align-items: center;
+  // &__form {
+  //   display: flex;
+  //   align-items: center;
 
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 24px;
-    padding: 4px;
-    transition: border-color 0.3s ease;
+  //   background-color: rgba(255, 255, 255, 0.1);
+  //   border: 1px solid rgba(255, 255, 255, 0.3);
+  //   border-radius: 24px;
+  //   padding: 4px;
+  //   transition: border-color 0.3s ease;
 
-    &:focus-within {
-      border-color: var(--color-primary-light);
-    }
-  }
+  //   &:focus-within {
+  //     border-color: var(--color-primary-light);
+  //   }
+  // }
 
-  .header__control {
-    border: none;
-    background: transparent;
-    outline: none;
-    padding: 8px 12px;
-    color: var(--color-primary-light);
-    font-size: 16px;
+  // &__control {
+  //   border: none;
+  //   background: transparent;
+  //   outline: none;
+  //   padding: 8px 12px;
+  //   color: var(--color-primary-light);
+  //   font-size: 16px;
 
-    &::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-    }
+  //   &::placeholder {
+  //     color: rgba(255, 255, 255, 0.7);
+  //   }
 
-    &::-webkit-search-cancel-button {
-      filter: invert(1) brightness(2);
-      cursor: pointer;
-    }
-  }
+  //   &::-webkit-search-cancel-button {
+  //     filter: invert(1) brightness(2);
+  //     cursor: pointer;
+  //   }
+  // }
 
-  .header__button-submit {
-    border: none;
-    background: transparent;
-    padding: 8px 12px;
-    color: var(--color-primary-light);
-    cursor: pointer;
-    border-radius: 20px;
-    transition: background-color 0.3s ease;
+  // &__button-submit {
+  //   border: none;
+  //   background: transparent;
+  //   padding: 8px 12px;
+  //   color: var(--color-primary-light);
+  //   cursor: pointer;
+  //   border-radius: 20px;
+  //   transition: background-color 0.3s ease;
 
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-  }
+  //   &:hover {
+  //     background-color: rgba(255, 255, 255, 0.2);
+  //   }
+  // }
 }

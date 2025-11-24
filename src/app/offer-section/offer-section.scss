@@ -1,0 +1,26 @@
+.offer-section {
+  &__title-container {
+    position: relative;
+    text-align: end;
+  }
+
+  &__title {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 52px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      border: 3px solid var(--color-brand-light);
+      bottom: -10px;
+      right: 0;
+    }
+  }
+
+  &__subtitle-text {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+}

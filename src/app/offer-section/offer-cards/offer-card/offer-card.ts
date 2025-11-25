@@ -3,9 +3,12 @@ import { offer } from '../../../model/offer.model';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
+import { TruncatePipe } from '../../../pipes/truncate-pipe';
+import { Highlight } from '../../../directives/highlight';
+
 @Component({
   selector: 'app-offer-card',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, TruncatePipe, Highlight],
   templateUrl: './offer-card.html',
   styleUrl: './offer-card.scss'
 })
@@ -26,13 +29,6 @@ export class OfferCard {
     }
   }
 
-  openTravelDetailModal() {
-    this.cardClickEvent.emit(this.offer);
-
-    const modalElement = document.getElementById('travelDetailModal');
-    const modalInstance = new (window as any).bootstrap.Modal(modalElement);
-    modalInstance.show();
-  }
 
   // increment() {
   //   if (this.offer.freeSeats > this.numberOfReserves) {

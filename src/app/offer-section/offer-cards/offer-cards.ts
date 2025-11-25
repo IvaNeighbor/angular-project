@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, Output, OnInit, OnDestroy, OnChanges, SimpleChanges} from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {offer} from '../../model/offer.model'
 import { OfferCard } from "./offer-card/offer-card";
 import { Data } from '../../services/data';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -12,21 +12,12 @@ import { Subscription } from 'rxjs';
   templateUrl: './offer-cards.html',
   styleUrl: './offer-cards.scss'
 })
-export class OfferCards implements OnInit, OnDestroy, OnChanges{
-  offers: offer[] = [];
-  private subscription: Subscription = new Subscription();
+export class OfferCards implements OnInit, OnChanges{
+  offers$: Observable<offer[]> | undefined;
   constructor(private dataService: Data) { }
 
   ngOnInit(): void {
-    this.subscription = this.dataService.getItems().subscribe(data => {
-      this.offers = data;
-    });
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.offers$ = this.dataService.getItems();
   }
 
   @Input() searchText: string = "";
@@ -41,8 +32,7 @@ export class OfferCards implements OnInit, OnDestroy, OnChanges{
   selectedOffer!: offer; 
 
   onSelectedOffer(offer: offer) {
-    this.selectedOffer = offer;
-    this.selectedOfferEvent.emit(this.selectedOffer);
+    this.selectedOfferEvent.emit(offer);
   } 
 
   trackById(id: number, item: offer): number {

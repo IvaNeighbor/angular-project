@@ -1,4 +1,4 @@
-<div class="offer-card">
+<div class="offer-card" appHighlight>
   <img class="offer-card__img" [src]="offer.bgImage" alt="{{ offer.country }}" />
 
   <div class="offer-card__container">
@@ -18,7 +18,7 @@
       </ng-container>
     </div>
 
-    <p class="offer-card__description">{{ offer.description }}</p>
+    <p class="offer-card__description">{{ offer.description | truncate : 30 }}</p>
 
     <p
       [ngClass]="{

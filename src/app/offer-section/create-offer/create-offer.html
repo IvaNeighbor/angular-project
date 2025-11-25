@@ -1,0 +1,90 @@
+<div class="create-offer-container">
+  <h2>Create New Offer</h2>
+
+  <form [formGroup]="offerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="country">Country & City</label>
+      <input id="country" type="text" formControlName="country" placeholder="e.g. Paris, France" />
+
+      <div
+        class="error-msg"
+        *ngIf="offerForm.get('country')?.invalid && offerForm.get('country')?.touched"
+      >
+        <small *ngIf="offerForm.get('country')?.errors?.['required']">Country is required.</small>
+        <small *ngIf="offerForm.get('country')?.errors?.['minlength']"
+          >Must be at least 3 chars.</small
+        >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        rows="3"
+        placeholder="Tour details..."
+      ></textarea>
+      <div
+        class="error-msg"
+        *ngIf="offerForm.get('description')?.invalid && offerForm.get('description')?.touched"
+      >
+        <small>Description is required (min 10 chars).</small>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="price">Price ($)</label>
+        <input id="price" type="number" formControlName="price" />
+        <div
+          class="error-msg"
+          *ngIf="offerForm.get('price')?.invalid && offerForm.get('price')?.touched"
+        >
+          <small>Valid price is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="discount">Discount (%)</label>
+        <input id="discount" type="number" formControlName="discount" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="freeSeats">Free Seats</label>
+        <input id="freeSeats" type="number" formControlName="freeSeats" />
+        <div
+          class="error-msg"
+          *ngIf="offerForm.get('freeSeats')?.invalid && offerForm.get('freeSeats')?.touched"
+        >
+          <small>Required.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="rating">Rating (1-5)</label>
+        <input id="rating" type="number" formControlName="rating" min="1" max="5" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="bgImage">Image URL</label>
+      <input
+        id="bgImage"
+        type="text"
+        formControlName="bgImage"
+        placeholder="https://example.com/image.jpg"
+      />
+      <div
+        class="error-msg"
+        *ngIf="offerForm.get('bgImage')?.invalid && offerForm.get('bgImage')?.touched"
+      >
+        <small>Image link is required.</small>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn" [disabled]="offerForm.invalid">Create Offer</button>
+  </form>
+</div>

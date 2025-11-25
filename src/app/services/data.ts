@@ -148,4 +148,13 @@ export class Data {
   getOfferById(id: number): offer | undefined {
     return this.offers.find(offer => offer.id === id);
   }
+
+  addOffer(newOffer: offer): void {
+    const maxId = this.offers.reduce((max, item) => item.id > max ? item.id : max, 0);
+    newOffer.id = maxId + 1;
+
+    this.offers.push(newOffer);
+
+    this.offersSubject.next(this.offers);
+  }
 }

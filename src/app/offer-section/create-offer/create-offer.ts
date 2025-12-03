@@ -31,11 +31,16 @@ export class CreateOffer {
 
   onSubmit() {
     if (this.offerForm.valid) {
-      this.dataService.addOffer(this.offerForm.value);
-      
-      this.offerForm.reset();
-      
-      this.router.navigate(['/offers']);
+      this.dataService.addOffer(this.offerForm.value).subscribe({
+        next: (response) => {
+          console.log('Offer added:', response);
+          this.offerForm.reset();
+          this.router.navigate(['/']);
+        },
+        error: (err) => {
+          console.error('Error adding offer', err);
+        }
+      });
     } else {
       this.offerForm.markAllAsTouched();
     }

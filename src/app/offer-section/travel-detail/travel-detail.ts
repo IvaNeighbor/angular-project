@@ -15,19 +15,26 @@ export class TravelDetail implements OnInit, OnDestroy {
   offer: offer | undefined;
   stars = Array.from({ length: 5 });
   numberOfReserves: number = 0;
-
+  private sub: Subscription = new Subscription();
+  
   constructor(
     private dataService: Data,
     private route: ActivatedRoute 
   ) { }
 
-  private sub: Subscription = new Subscription();
-
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = this.route.snapshot.paramMap.get('id');
 
     if (id) {
-      this.offer = this.dataService.getOfferById(id);
+      const httpSub = this.dataService.getOfferById(id).subscribe({
+        next: (data) => {
+          this.offer = data;
+        },
+        error: (err) => {
+           console.error(err);
+        }
+      });
+      this.sub.add(httpSub);
     }
   }
 

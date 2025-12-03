@@ -1,5 +1,5 @@
 export interface offer {
-  id: number,
+  id: number | string,
   country: string,
   description: string,
   price: number,

@@ -14,28 +14,30 @@ import { Observable } from 'rxjs';
 })
 export class OfferCards implements OnInit, OnChanges{
   offers$: Observable<offer[]> | undefined;
+
+  @Input() searchText: string = "";
+  
+  @Output() selectedOfferEvent: EventEmitter<offer> = new EventEmitter<offer>();
+  selectedOffer!: offer;
+
   constructor(private dataService: Data) { }
 
   ngOnInit(): void {
     this.offers$ = this.dataService.getItems();
   }
 
-  @Input() searchText: string = "";
-
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['searchText']) {
-      this.dataService.filterOffers(this.searchText);
+      console.log('🔍 Пошук за запитом:', this.searchText);
+      this.offers$ = this.dataService.getItems(this.searchText);
     }
   }
-
-  @Output() selectedOfferEvent: EventEmitter<offer> = new EventEmitter<offer>();
-  selectedOffer!: offer; 
 
   onSelectedOffer(offer: offer) {
     this.selectedOfferEvent.emit(offer);
   } 
 
-  trackById(id: number, item: offer): number {
+  trackById(index: number, item: offer): number | string {
     return item.id;
   }
 }

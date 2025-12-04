@@ -10,7 +10,7 @@ import { Router, RouterLink } from '@angular/router';
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
   template: `
     <div class="auth-container">
-      <h2>register</h2>
+      <h2>Register</h2>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label>Email</label>

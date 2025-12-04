@@ -48,8 +48,13 @@ export class Login {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.authService.register(this.loginForm.value).subscribe({
-        error: (err) => alert('Register failed!')
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (res) => {
+        },
+        error: (err) => {
+          console.error(err); 
+          alert('Login failed! Wrong email or password.');
+        }
       });
     }
   }

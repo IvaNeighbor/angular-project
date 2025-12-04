@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000';
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.hasToken());
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
@@ -18,13 +17,13 @@ export class AuthService {
   }
 
   register(user: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, user).pipe(
+    return this.http.post(`register`, user).pipe(
       tap((res: any) => this.handleAuthSuccess(res))
     );
   }
 
   login(user: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, user).pipe(
+    return this.http.post(`login`, user).pipe(
       tap((res: any) => this.handleAuthSuccess(res))
     );
   }

@@ -1,4 +1,10 @@
 <ul class="auth-menu">
-  <li><a class="auth-menu__login" href="#">Login</a></li>
-  <li><a class="auth-menu__sing" href="#">Sing up</a></li>
+  <ng-container *ngIf="(isAuthenticated$ | async) === false">
+    <li><a class="auth-menu__login" routerLink="/login">Login</a></li>
+    <li><a class="auth-menu__sing" routerLink="/register">Sign up</a></li>
+  </ng-container>
+  <ng-container *ngIf="isAuthenticated$ | async">
+    <li><span style="color: white; margin-right: 10px">Hello, User!</span></li>
+    <li><a class="auth-menu__login" href="#" (click)="logout($event)">Logout</a></li>
+  </ng-container>
 </ul>

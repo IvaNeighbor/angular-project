@@ -1,5 +1,11 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "bioshok@gmail.com",
+      "password": "$2a$10$.qCa6tXtnW4Z9VB6ih/w/urfURHUZcXPWLcz1UOrOPR.fGH.JhwUC",
+      "id": 1
+    }
+  ],
   "offers": [
     {
       "id": "1",

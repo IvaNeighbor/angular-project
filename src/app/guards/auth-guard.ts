@@ -1,5 +1,16 @@
-import { CanActivateFn } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
+import { inject } from '@angular/core';
+import { AuthService } from '../services/auth';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  return true;
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  if (authService.getToken()) {
+    return true; 
+  } else {
+    alert('Будь ласка, увійдіть у систему, щоб додати тур!');
+    router.navigate(['/login']);
+    return false;
+  }
 };
